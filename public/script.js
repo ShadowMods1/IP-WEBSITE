@@ -1,38 +1,45 @@
-// Automatically grab user info
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://ipinfo.io/json?token=660283c26d0707') // Replace with your API token
+function fetchCommand(url) {
+    fetch(url)
         .then(response => response.json())
         .then(data => {
-            const info = `
-IP: ${data.ip}
-City: ${data.city}
-Region: ${data.region}
-Country: ${data.country}
-ISP: ${data.org}
-Timezone: ${data.timezone}
-            `;
-            document.getElementById('info').innerText = info;
-
-            // Optionally store IP for later use
-            window.userIP = data.ip;
+            document.getElementById('output').textContent = data.output;
         })
-        .catch(err => {
-            document.getElementById('info').innerText = 'Error fetching IP info.';
-            console.error(err);
+        .catch(error => {
+            document.getElementById('output').textContent = 'Error: ' + error;
         });
-});
+}
 
-// Execute server-side actions
-function execute(action) {
-    const ip = window.userIP || prompt('Enter IP Address:');
-    if (!ip) return;
+function geolocate() {
+    const ip = prompt('Enter IP for geolocation:');
+    fetchCommand(`/command/geolocate?ip=${ip}`);
+}
 
-    fetch(`/command/${action}?ip=${ip}`)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('output').innerText = data.output || data.error;
-        })
-        .catch(err => {
-            document.getElementById('output').innerText = `Error: ${err.message}`;
-        });
+function traceDNS() {
+    const ip = prompt('Enter IP for DNS trace:');
+    fetchCommand(`/command/tracedns?ip=${ip}`);
+}
+
+function portScan() {
+    const ip = prompt('Enter IP for port scan:');
+    const ports = prompt('Enter ports (e.g., 80, 443):');
+    fetchCommand(`/command/portscan?ip=${ip}&ports=${ports}`);
+}
+
+function ddos() {
+    fetchCommand('/command/ddos');
+}
+
+function macAddr() {
+    const ip = prompt('Enter IP for Mac address trace:');
+    fetchCommand(`/command/macaddr?ip=${ip}`);
+}
+
+function arpspoof() {
+    const ip = prompt('Enter IP for ARP spoofing:');
+    fetchCommand(`/command/arpspoof?ip=${ip}`);
+}
+
+function rpcDump() {
+    const ip = prompt('Enter IP for RPC dump:');
+    fetchCommand(`/command/rpcdump?ip=${ip}`);
 }
