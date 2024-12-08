@@ -1,6 +1,6 @@
 // Automatically grab user info
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://ipinfo.io/json?token=your_token_here') // Replace with your API token
+    fetch('https://ipinfo.io/json?token=660283c26d0707') // Replace with your API token
         .then(response => response.json())
         .then(data => {
             const info = `
