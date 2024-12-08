@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 
 // Your Discord webhook URL
-const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL'; // Replace with your actual Discord webhook URL
+const webhookUrl = 'https://discord.com/api/webhooks/1240089193435369532/wMlsksY6CLtJ0XkTzWODe1_sz00JYOwSbymtV3ZsimB4QjCfWA1QEuNaen4bXS20w2Lx'; // Replace with your actual Discord webhook URL
 
 app.use(express.static('public'));  // Serve static files from the 'public' directory
 app.use(express.json());  // Middleware to parse JSON request bodies
