@@ -1,27 +1,122 @@
+/* General styles */
 body {
-    font-family: Arial, sans-serif;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #1e1e2e;
+    color: #f0f0f0;
+}
+
+/* Container styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    background-color: #f0f0f0;
-    color: #333;
-}
-#menu {
-    margin: 20px auto;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    background: #fff;
+}
+
+/* Header styles */
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #58a6ff;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #a0a0a0;
+}
+
+/* Info section */
+.info-section {
+    background: #282c34;
+    padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    width: 100%;
 }
-button {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+
+.info-section h2 {
+    color: #58a6ff;
+    margin-bottom: 10px;
 }
-#output {
-    margin-top: 20px;
+
+#info {
+    font-family: monospace;
+    background: #1e212b;
     padding: 10px;
-    border: 1px solid #ddd;
-    background: #f9f9f9;
-    white-space: pre-wrap;
-    text-align: left;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+/* Tools section */
+.tools-section h2 {
+    color: #58a6ff;
+}
+
+.button-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+button {
+    background: #58a6ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #1e90ff;
+}
+
+button:active {
+    background: #0056b3;
+}
+
+/* Output section */
+.output-section {
+    background: #282c34;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    width: 100%;
+}
+
+.output-section h2 {
+    color: #58a6ff;
+    margin-bottom: 10px;
+}
+
+#output {
+    font-family: monospace;
+    background: #1e212b;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+/* Footer styles */
+footer {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #a0a0a0;
+}
+
+footer p {
+    margin: 0;
 }
