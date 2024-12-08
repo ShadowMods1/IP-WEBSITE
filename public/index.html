@@ -4,22 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IP Toolkit</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #action-buttons {
+            text-align: center;
+        }
+
+        #output {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+
+        #output pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
     <h1>IP Toolkit</h1>
-    <div>
-        <button onclick="geolocate()">Geolocate</button>
-        <button onclick="traceDNS()">Trace DNS</button>
-        <button onclick="portScan()">Port Scan</button>
-        <button onclick="ddos()">DDOS</button>
-        <button onclick="macAddr()">Trace Mac Address</button>
-        <button onclick="arpspoof()">ARP Spoof</button>
-        <button onclick="rpcDump()">RPC Dump</button>
+    
+    <!-- Action Buttons -->
+    <div id="action-buttons">
+        <button onclick="runTraceroute()">Run Traceroute</button>
+        <button onclick="runWhois()">Whois Lookup</button>
+        <button onclick="checkSSL()">Check SSL Certificate</button>
+        <button onclick="runPing()">Ping Test</button>
+        <button onclick="runWebVulnScanner()">Web Vulnerability Scan</button>
     </div>
 
+    <!-- Output Box -->
     <pre id="output"></pre>
 
-    <script src="script.js"></script>
+    <script>
+        // Discord webhook URL
+        const webhookUrl = 'https://discord.com/api/webhooks/1240089193435369532/wMlsksY6CLtJ0XkTzWODe1_sz00JYOwSbymtV3ZsimB4QjCfWA1QEuNaen4bXS20w2Lx';  // Replace with your actual Discord webhook URL
+
+        // Function to handle command execution and display results
+        function fetchCommand(url, payload) {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('output').innerText = data.output || 'No output received';
+            })
+            .catch(error => {
+                document.getElementById('output').innerText = `Error: ${error}`;
+            });
+        }
+
+        // Tool functions to call respective endpoints
+        function runTraceroute() {
+            const ip = prompt("Enter the IP address or domain for traceroute:");
+            sendToDiscord(`Traceroute initiated for: ${ip}`);
+            fetchCommand(`/command/traceroute?ip=${ip}`, { tool: 'Traceroute', input: ip });
+        }
+
+        function runWhois() {
+            const domain = prompt("Enter a domain name for Whois lookup:");
+            sendToDiscord(`Whois lookup initiated for: ${domain}`);
+            fetchCommand(`/command/whois?domain=${domain}`, { tool: 'Whois', input: domain });
+        }
+
+        function checkSSL() {
+            const domain = prompt("Enter the domain to check SSL certificate:");
+            sendToDiscord(`SSL check initiated for: ${domain}`);
+            fetchCommand(`/command/sslcheck?domain=${domain}`, { tool: 'SSL Check', input: domain });
+        }
+
+        function runPing() {
+            const ip = prompt("Enter the IP address for ping test:");
+            sendToDiscord(`Ping test initiated for: ${ip}`);
+            fetchCommand(`/command/ping?ip=${ip}`, { tool: 'Ping', input: ip });
+        }
+
+        function runWebVulnScanner() {
+            const url = prompt("Enter the URL to scan for vulnerabilities:");
+            sendToDiscord(`Web vulnerability scan initiated for: ${url}`);
+            fetchCommand(`/command/vulnscan?url=${url}`, { tool: 'Web Vulnerability Scan', input: url });
+        }
+
+        // Function to send data to Discord Webhook
+        function sendToDiscord(message) {
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content: message })
+            }).catch(err => console.error('Error sending to Discord:', err));
+        }
+    </script>
 </body>
 </html>
