@@ -4,37 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IP Toolkit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>IP Toolkit</h1>
-            <p>Your go-to tool for IP information and network diagnostics</p>
-        </header>
-        <main>
-            <section class="info-section">
-                <h2>Your Info</h2>
-                <pre id="info">Loading...</pre>
-            </section>
-            <section class="tools-section">
-                <h2>Public IP Tools</h2>
-                <div class="button-grid">
-                    <button onclick="execute('geolocate')">Geolocate</button>
-                    <button onclick="execute('tracedns')">Trace DNS</button>
-                    <button onclick="execute('portscan')">Port Scan</button>
-                </div>
-            </section>
-            <section class="output-section">
-                <h2>Output</h2>
-                <pre id="output">Select a tool to see results here.</pre>
-            </section>
-        </main>
-        <footer>
-            <p>Made with ❤️ by ShadowMods</p>
-        </footer>
+    <h1>IP Toolkit</h1>
+    <div>
+        <button onclick="geolocate()">Geolocate</button>
+        <button onclick="traceDNS()">Trace DNS</button>
+        <button onclick="portScan()">Port Scan</button>
+        <button onclick="ddos()">DDOS</button>
+        <button onclick="macAddr()">Trace Mac Address</button>
+        <button onclick="arpspoof()">ARP Spoof</button>
+        <button onclick="rpcDump()">RPC Dump</button>
     </div>
+
+    <pre id="output"></pre>
+
     <script src="script.js"></script>
 </body>
 </html>
