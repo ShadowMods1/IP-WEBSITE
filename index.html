@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Toolkit</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="menu">
+        <h1>IP Toolkit</h1>
+        <h2>Public IP</h2>
+        <button onclick="execute('geolocate')">Geolocate</button>
+        <button onclick="execute('tracedns')">Trace DNS</button>
+        <button onclick="execute('portscan')">Port Scan</button>
+        <h2>Local IP</h2>
+        <button onclick="execute('macaddr')">Trace MAC Address</button>
+    </div>
+    <div id="output"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
